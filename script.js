@@ -101,9 +101,11 @@ times.addEventListener('click', () => setOperator('*'));
 division.addEventListener('click', () => setOperator('/'));
 
 equals.addEventListener('click', () => {
-    let result = operate(num1, operator, num2);
-    display.textContent = result;
-    counter = 0;
+    if (num1 && num2 && operator){
+        result = operate(num1, operator, num2);
+        display.textContent = result;
+        counter = 0;
+    }
     
 });
 
