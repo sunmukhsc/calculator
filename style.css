@@ -83,6 +83,7 @@ button:hover {
 #equals {
     background-color: darkred;
     color: rgb(219, 219, 219);
+    width: 170px;
 }
 
 #equals:hover {
