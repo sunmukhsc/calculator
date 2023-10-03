@@ -11,6 +11,10 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b === 0) {
+        clearAll();
+        return 'Not Possible!'
+    }
     return a / b;
 }
 
@@ -48,6 +52,12 @@ function setOperator(symbol) {
     operator = symbol;
 }
 
+function clearAll() {
+    display.textContent = 0;
+    counter = 0;
+    num1 = num2 = operator = result = undefined;
+}
+
 let num1;
 let operator;
 let num2;
@@ -74,61 +84,21 @@ const minus = document.querySelector("#minus");
 const plus = document.querySelector("#plus");
 const clear = document.querySelector("#clear");
 
-zero.addEventListener('click', () => {
-    updateDisplay(0);
-});
+zero.addEventListener('click', () => updateDisplay(0));
+one.addEventListener('click', () => updateDisplay(1));
+two.addEventListener('click', () => updateDisplay(2));
+three.addEventListener('click', () => updateDisplay(3));
+four.addEventListener('click', () => updateDisplay(4));
+five.addEventListener('click', () => updateDisplay(5));
+six.addEventListener('click', () => updateDisplay(6));
+seven.addEventListener('click', () => updateDisplay(7));
+eight.addEventListener('click', () => updateDisplay(8));
+nine.addEventListener('click', () => updateDisplay(9));
 
-one.addEventListener('click', () => {
-    updateDisplay(1);
-});
-
-two.addEventListener('click', () => {
-    updateDisplay(2);
-});
-
-three.addEventListener('click', () => {
-    updateDisplay(3);
-});
-
-four.addEventListener('click', () => {
-    updateDisplay(4);
-});
-
-five.addEventListener('click', () => {
-    updateDisplay(5);
-});
-
-six.addEventListener('click', () => {
-    updateDisplay(6);
-});
-
-seven.addEventListener('click', () => {
-    updateDisplay(7);
-});
-
-eight.addEventListener('click', () => {
-    updateDisplay(8);
-});
-
-nine.addEventListener('click', () => {
-    updateDisplay(9);
-});
-
-plus.addEventListener('click', () => {
-    setOperator('+');
-});
-
-minus.addEventListener('click', () => {
-    setOperator('-');
-});
-
-times.addEventListener('click', () => {
-    setOperator('*');
-});
-
-division.addEventListener('click', () => {
-    setOperator('/');
-});
+plus.addEventListener('click', () => setOperator('+'));
+minus.addEventListener('click', () => setOperator('-'));
+times.addEventListener('click', () => setOperator('*'));
+division.addEventListener('click', () => setOperator('/'));
 
 equals.addEventListener('click', () => {
     let result = operate(num1, operator, num2);
@@ -138,7 +108,5 @@ equals.addEventListener('click', () => {
 });
 
 clear.addEventListener('click', () => {
-    display.textContent = 0;
-    counter = 0;
-    num1 = num2 = operator = result = undefined;
+    clearAll();
 });
