@@ -33,29 +33,47 @@ function operate(operand1, operator, operand2) {
 }
 
 function updateDisplay(num) {
-    display.textContent = num;
-    if (counter % 2 === 0) {
-        num1 = num;
+    let displayNum;
+    if (isNewNum){
+        displayNum = num;
+        display.textContent = displayNum;
+        showNum(displayNum);
     } else {
-        num2 = num;
+        display.innerHTML += num;
+        displayNum = Number(display.textContent);
     }
-    counter++;
+
+    if (counter % 2 === 0) {
+        num1 = displayNum;
+    } else {
+        num2 = displayNum;
+    }
+    isNewNum = false;
 }
 
 function setOperator(symbol) {
+    counter++;
     if (counter !== 1) {
         result = operate(num1, operator, num2);
         num1 = result;
-        display.textContent = result;
+        showNum(result);
         counter = 1;
     }
     operator = symbol;
+    isNewNum = true;
 }
 
 function clearAll() {
     display.textContent = 0;
     counter = 0;
     num1 = num2 = operator = result = undefined;
+    isNewNum = true;
+}
+
+function showNum(num) {
+    let roundedNum = Math.round(
+        (num + Number.EPSILON) * (10**10)) / (10**10);
+    display.textContent = roundedNum;
 }
 
 let num1;
@@ -63,6 +81,7 @@ let operator;
 let num2;
 let result;
 let counter = 0;
+let isNewNum = true;
 
 const display = document.querySelector(".display");
 
@@ -103,8 +122,9 @@ division.addEventListener('click', () => setOperator('/'));
 equals.addEventListener('click', () => {
     if (num1 && num2 && operator){
         result = operate(num1, operator, num2);
-        display.textContent = result;
+        showNum(result);
         counter = 0;
+        isNewNum = true;
     }
     
 });
