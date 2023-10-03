@@ -72,6 +72,7 @@ const division = document.querySelector("#divide");
 const times = document.querySelector("#times");
 const minus = document.querySelector("#minus");
 const plus = document.querySelector("#plus");
+const clear = document.querySelector("#clear");
 
 zero.addEventListener('click', () => {
     updateDisplay(0);
@@ -114,23 +115,30 @@ nine.addEventListener('click', () => {
 });
 
 plus.addEventListener('click', () => {
-    setOperator('+')
+    setOperator('+');
 });
 
 minus.addEventListener('click', () => {
-    setOperator('-')
+    setOperator('-');
 });
 
 times.addEventListener('click', () => {
-    setOperator('*')
+    setOperator('*');
 });
 
 division.addEventListener('click', () => {
-    setOperator('/')
+    setOperator('/');
 });
 
 equals.addEventListener('click', () => {
     let result = operate(num1, operator, num2);
     display.textContent = result;
     counter = 0;
+    
+});
+
+clear.addEventListener('click', () => {
+    display.textContent = 0;
+    counter = 0;
+    num1 = num2 = operator = result = undefined;
 });
